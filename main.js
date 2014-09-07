@@ -65,6 +65,9 @@ game.bombSelectionListener = function(event){
     game.stage.update();
 }
 
+//
+// Check if the selected bombs make a number bond (add up to 10)
+//
 game.checkBoom = function(){
   var selectedBombs = new Array();
   for (var y = 0;y < game.height;y++){
@@ -82,6 +85,9 @@ game.checkBoom = function(){
   }
 }
 
+//
+// Detonate the two selected bombs
+//
 game.boom = function(bombs){
   game.score++;
   document.getElementById("score").innerHTML = game.score;
@@ -101,11 +107,11 @@ game.boom = function(bombs){
   
   game.sounds.boom.play();
   
-  // Drop next row
+  // TODO Drop next row
 }
 
 //
-//
+// Initialise the game - setup sprites and canvas
 //
 game.init = function(){
 
@@ -129,6 +135,9 @@ game.init = function(){
    
 }
 
+//
+// Game over
+//
 game.end = function(){
 
   //
@@ -157,10 +166,13 @@ game.end = function(){
    // Add current score to leaderboard
    //
    game.scores[game.getPlayerName()] = game.score;
-   game.showLeaderboard;
+   game.showLeaderboard();
 
 }
 
+//
+// Sorts the scores out and prints a leaderboard table
+//
 game.showLeaderboard = function(){
    var sortedScores = game.util.sortObj(game.scores,'value');
 
@@ -181,6 +193,11 @@ game.start = function(){
    // Hide the start button
    //
    document.getElementById("start").style.display="none";
+   
+   //
+   // Hide the leaderboard
+   //
+   document.getElementById("leaderboard").style.display="none";
 
    //
    // Create the grid
@@ -206,6 +223,9 @@ game.start = function(){
    createjs.Ticker.addEventListener("tick", game.update);
 }
 
+//
+// Game countdown loop
+//
 game.countdown = function(){
    game.timer--;
    game.sounds.bip.play();
@@ -218,8 +238,10 @@ game.countdown = function(){
    }
 }
 
+//
+// Main animation loop
+//
 game.update = function(){
-
    //
    // Any bombs to remove?
    //
@@ -332,7 +354,7 @@ game.util.sortObj = function(obj, type, caseSensitive) {
   for (var key in obj) {
     if (obj.hasOwnProperty(key)) {
       if (!caseSensitive) {
-        key = (key['toLowerCase'] ? key.toLowerCase() : key);
+        key = (key['toUpperCase'] ? key.toUpperCase() : key);
       }
       temp_array.push(key);
     }
@@ -344,8 +366,8 @@ game.util.sortObj = function(obj, type, caseSensitive) {
       var x = obj[a];
       var y = obj[b];
       if (!caseSensitive) {
-        x = (x['toLowerCase'] ? x.toLowerCase() : x);
-        y = (y['toLowerCase'] ? y.toLowerCase() : y);
+        x = (x['toUpperCase'] ? x.toUpperCase() : x);
+        y = (y['toUpperCase'] ? y.toUpperCase() : y);
       }
       return ((x > y) ? -1 : ((x < y) ? 1 : 0));
     });
