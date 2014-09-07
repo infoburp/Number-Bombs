@@ -65,6 +65,9 @@ game.bombSelectionListener = function(event){
     game.stage.update();
 }
 
+//
+// Check if the selected bombs make a number bond (add up to 10)
+//
 game.checkBoom = function(){
   var selectedBombs = new Array();
   for (var y = 0;y < game.height;y++){
@@ -82,6 +85,9 @@ game.checkBoom = function(){
   }
 }
 
+//
+// Detonate the two selected bombs
+//
 game.boom = function(bombs){
   game.score++;
   document.getElementById("score").innerHTML = game.score;
@@ -101,11 +107,11 @@ game.boom = function(bombs){
   
   game.sounds.boom.play();
   
-  // Drop next row
+  // TODO Drop next row
 }
 
 //
-//
+// Initialise the game - setup sprites and canvas
 //
 game.init = function(){
 
@@ -129,6 +135,9 @@ game.init = function(){
    
 }
 
+//
+// Game over
+//
 game.end = function(){
 
   //
@@ -161,6 +170,9 @@ game.end = function(){
 
 }
 
+//
+// Sorts the scores out and prints a leaderboard table
+//
 game.showLeaderboard = function(){
    var sortedScores = game.util.sortObj(game.scores,'value');
 
@@ -206,6 +218,9 @@ game.start = function(){
    createjs.Ticker.addEventListener("tick", game.update);
 }
 
+//
+// Game countdown loop
+//
 game.countdown = function(){
    game.timer--;
    game.sounds.bip.play();
@@ -218,8 +233,10 @@ game.countdown = function(){
    }
 }
 
+//
+// Main animation loop
+//
 game.update = function(){
-
    //
    // Any bombs to remove?
    //
