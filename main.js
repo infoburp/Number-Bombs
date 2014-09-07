@@ -193,6 +193,11 @@ game.start = function(){
    // Hide the start button
    //
    document.getElementById("start").style.display="none";
+   
+   //
+   // Hide the leaderboard
+   //
+   document.getElementById("leaderboard").style.display="none";
 
    //
    // Create the grid
