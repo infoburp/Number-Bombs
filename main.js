@@ -166,7 +166,7 @@ game.end = function(){
    // Add current score to leaderboard
    //
    game.scores[game.getPlayerName()] = game.score;
-   game.showLeaderboard;
+   game.showLeaderboard();
 
 }
 
@@ -349,7 +349,7 @@ game.util.sortObj = function(obj, type, caseSensitive) {
   for (var key in obj) {
     if (obj.hasOwnProperty(key)) {
       if (!caseSensitive) {
-        key = (key['toLowerCase'] ? key.toLowerCase() : key);
+        key = (key['toUpperCase'] ? key.toUpperCase() : key);
       }
       temp_array.push(key);
     }
@@ -361,8 +361,8 @@ game.util.sortObj = function(obj, type, caseSensitive) {
       var x = obj[a];
       var y = obj[b];
       if (!caseSensitive) {
-        x = (x['toLowerCase'] ? x.toLowerCase() : x);
-        y = (y['toLowerCase'] ? y.toLowerCase() : y);
+        x = (x['toUpperCase'] ? x.toUpperCase() : x);
+        y = (y['toUpperCase'] ? y.toUpperCase() : y);
       }
       return ((x > y) ? -1 : ((x < y) ? 1 : 0));
     });
